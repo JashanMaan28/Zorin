@@ -3,6 +3,7 @@ import random
 import asyncio
 import edge_tts
 import os
+import eel
 
 AssistantVoice = "en-CA-LiamNeural"
 
@@ -43,6 +44,7 @@ def TTS(Text, func=lambda r=None: True):
             except Exception as e:
                 print(f"Error in finally block: {e}")
 
+@eel.expose
 def speak(Text, func=lambda r=None: True):
     Data = str(Text).split(".")
         

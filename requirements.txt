@@ -6,3 +6,4 @@ edge_tts
 selenium
 mtranslate
 webdriver_manager
+speechRecognition

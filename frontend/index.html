@@ -29,36 +29,33 @@
 <body style="background-color: black; margin: 0;">
 
     <div class="container">
-        
-        <section id="oval" class="mb-4" style="height: 100vh;">
+        <section id="oval" class="mb-4" style="height: 85vh;">
             <div class="container h-100">
                 <div class="row h-100">
                     <div class="col-md-12 d-flex justify-content-center align-items-center">
-
                         <canvas id="canvasOne" width="700" height="420" style="position: absolute;"></canvas>
-
                         <div id="ZorinHood">
-
                             <div class="square">
                                 <span class="circle"></span>
                                 <span class="circle"></span>
                                 <span class="circle"></span>
                             </div>
                         </div>
-                    </div>
-                    <h5 class="text-light text text-center">Ask Me Anything</h5>
-
-                    <div class="col-md-12 mt-4 pt-4">
-                        <div class="text-center">
-                            <div id="TextInput" class="d-flex">
-
-                                <input class="input-field" type="text" name="chatbox" id="chatbox"
-                                    placeholder="type here...">
-                                <button id="MicBtn" class="glow-on-hover"><i class="bi bi-mic"></i></button>
-                                <button id="ChatBtn" class="glow-on-hover"><i class="bi bi-chat-dots"></i></button>
-                                <button id="SettingsBtn" class="glow-on-hover"><i class="bi bi-gear"></i></button>
+                        
+                        <div style="position: absolute; bottom: 200px; text-align: center; width: 100%;">
+                            <h5 class="text-light text ">Ask Me Anything</h5>
+                            
+                            <div style="margin-top: 50px;">
+                                <div id="TextInput" class="d-flex">
+                                    <input class="input-field" type="text" name="chatbox" id="chatbox" placeholder="Your question here...">
+                                    <button id="MicBtn" class="glow-on-hover"><i class="bi bi-mic"></i></button>
+                                    <button id="ChatBtn" class="glow-on-hover"><i class="bi bi-chat-dots"></i></button>
+                                    <button id="SettingsBtn" class="glow-on-hover"><i class="bi bi-gear"></i></button>
+                                </div>
                             </div>
                         </div>
+                    </div>
+                </div>
                     </div>
                 </div>
             </div>
@@ -70,7 +67,7 @@
                     <div class="col-md-12">
                         <div class="d-flex justify-content-center align-items-center" style="height: 100vh;">
                             <div class="">
-                                <p class="text-start text-light mb-4 siri-message">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Facere, doloremque!</p>
+                                <p class="text-start text-light mb-4 siri-message">Hey, This is Zorin!</p>
                                 <div id="siri-container"></div>
                             </div>
                         </div>
@@ -79,6 +76,7 @@
             </div>
         </section>
     </div>
+
 
     <!--Jquery  -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
@@ -98,10 +96,13 @@
     <script src="main.js"></script>
 
     <!-- Eel -->
-    <script src="/Eel.js"></script>
+    <script src="/eel.js"></script>
 
     <!-- Siri Wave -->
     <script src="https://unpkg.com/siriwave/dist/siriwave.umd.min.js"></script>
-</body>
 
+    <!-- Controller JS -->
+    <script src="controller.js"></script>
+
+</body>
 </html>
