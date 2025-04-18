@@ -43,4 +43,16 @@ $(document).ready(function () {
         eel.MainExecution()();
     });
 
+
+    // Hot key press Assistant Activation Event
+    function doc_keyUP(e) {
+
+        if (e.key === 'j' && e.metaKey) {
+            $("#oval").attr("hidden", true);
+            $("#SiriWave").attr("hidden", false);
+            eel.MainExecution()();
+        }
+    }
+    document.addEventListener('keyup', doc_keyUP, false);
+
 });

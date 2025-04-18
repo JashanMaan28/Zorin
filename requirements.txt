@@ -17,3 +17,5 @@ keyboard
 googlesearch-python
 pillow
 cohere
+pvporcupine
+pyaudio

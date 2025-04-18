@@ -1,4 +1,5 @@
 from playsound import playsound
+from backend.textToSpeech import speak
 from AppOpener import close, open as appopen
 from webbrowser import open as webopen
 from pywhatkit import search, playonyt
@@ -11,10 +12,16 @@ import requests
 import subprocess
 import keyboard
 import asyncio
+import pvporcupine
+import pyaudio
+import pyautogui as autogui
+import struct
+import time
 import os
 
 env_vars = dotenv_values(".env")
 GroqAPIKey = env_vars.get("GroqAPIKey")
+ACCESS_KEY = env_vars.get("pvporcupine_ACCESS_KEY")
 
 # Define CSS classes for parsing specific elements in HTML content.
 classes = ["zCubwf", "hgKElc", "LTKOO sY7ric", "Z0LcW", "gsrt vk_bk FzvWSb YmPhnf", "pclqee", "tw-Data-text tw-text-small tw-ta",
@@ -457,6 +464,7 @@ def OpenApp(app, sess=requests.session()):
     try:
         # First try to open as a local app
         appopen(clean_app_name, match_closest=True, output=True, throw_error=True)
+        speak(f"Opened, {clean_app_name} ")
         return True
     
     except:
@@ -569,7 +577,7 @@ def OpenApp(app, sess=requests.session()):
                     
                     # If no official site found, use the first link
                     first_link = links[0]
-                    print(f"Opening first search result for {clean_app_name}: {first_link}")
+                    speak(f"Opened first search result for {clean_app_name}: {first_link}")
                     webopen(first_link)
                     return True
                 else:
@@ -615,6 +623,7 @@ def OpenApp(app, sess=requests.session()):
                 url = f"https://www.{app_name_no_spaces}.com"
                 print(f"Search failed. Attempting to open constructed URL: {url}")
                 webopen(url)
+                speak(f"Opened {clean_app_name}")
                 return True
                 
         except Exception as e:
@@ -626,11 +635,12 @@ def OpenApp(app, sess=requests.session()):
                 url = f"https://www.{app_name_no_spaces}.com"
                 print(f"Exception occurred. Attempting to open as last resort: {url}")
                 webopen(url)
+                speak(f"Opened {clean_app_name}")
                 return True
             except:
                 return False
 
-# OpenApp("Open apple music")
+#OpenApp("Open apple music")
 
 def CloseApp(app):
     
@@ -726,10 +736,9 @@ async def Automation(commands: list[str]):
     return True
 
 # Assistant Sound Playing function
-def playAssistantSound():
-    music_dir = "./frontend/assets/audio/start_sound.mp3"
+def playAssistantSound(dir):
     try:
-        playsound(music_dir)
+        playsound(dir)
     except Exception as e:
         print(f"Error playing sound: {e}")
 
@@ -759,3 +768,49 @@ def QueryModifier(Query):
     
     return new_query.capitalize()
 
+def hotword():
+    porcupine = None
+    pa = None
+    audio_stream = None
+
+    try:
+        porcupine = pvporcupine.create(
+            access_key=ACCESS_KEY,
+            keyword_paths=[
+                ".\\frontend\\assets\hotword\Oracle_en_windows_v3_0_0.ppn"
+            ]
+        )
+
+        keywords = ["oracle"]
+
+        pa = pyaudio.PyAudio()
+        audio_stream = pa.open(
+            rate=porcupine.sample_rate,
+            channels=1,
+            format=pyaudio.paInt16,
+            input=True,
+            frames_per_buffer=porcupine.frame_length
+        )
+
+        print("Listening for hotwords...")
+
+        while True:
+            pcm = audio_stream.read(porcupine.frame_length, exception_on_overflow=False)
+            pcm = struct.unpack_from("h" * porcupine.frame_length, pcm)
+
+            keyword_index = porcupine.process(pcm)
+
+            if keyword_index >= 0:
+                print(f"Detected hotword: {keywords[keyword_index]}")
+                time.sleep(0.2)  # Give the system a tiny delay
+                autogui.hotkey("win", "j")
+                print("Hotkey triggered.")
+                time.sleep(1)  # Avoid re-triggering too quickly
+                
+    except:
+        if porcupine is not None:
+            porcupine.delete()
+        if audio_stream is not None:
+            audio_stream.close()
+        if pa is not None:
+            pa.terminate()

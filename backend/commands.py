@@ -15,7 +15,7 @@ import eel
 
 env_vars = dotenv_values(".env")
 Username = env_vars.get("Username")
-Assistantname = env_vars.get("AssistantName")
+Assistantname = "Zorin"
 DefaultMessage = f'''{Username} : Hello {Assistantname}, How are you?
 {Assistantname} : Welcome {Username}. I am doing well. How may I help you?'''
 subprocess = []
@@ -53,6 +53,7 @@ def MainExecution():
             if any(queries.startswith(func) for func in Functions):
                 run(Automation(list(Decision)))
                 TaskExecution = True
+                eel.showHood()
     
     if ImageExecution == True:
 

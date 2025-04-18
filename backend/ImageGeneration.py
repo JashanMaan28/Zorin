@@ -54,7 +54,7 @@ def GenerateImages(prompt: str):
 
 while True:
     try:
-        with open(r"Frontend\Files\ImageGeneration.data", "r") as f:
+        with open(r"Data\Files\ImageGeneration.data", "r") as f:
             Data: str = f.read()
 
         Prompt, Status = Data.split(",")
@@ -63,7 +63,7 @@ while True:
             print("Generating images...")
             ImageStatus = GenerateImages(prompt=Prompt)
 
-            with open(r"Frontend\Files\ImageGeneration.data", "w") as f:
+            with open(r"Data\Files\ImageGeneration.data", "w") as f:
                 f.write("False,False")
                 break 
 

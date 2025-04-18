@@ -5,7 +5,7 @@
     },
     {
         "role": "assistant",
-        "content": "Not much, it's a beautiful Friday afternoon!"
+        "content": "Not much, it's a Friday afternoon!"
     },
     {
         "role": "user",
@@ -13,14 +13,46 @@
     },
     {
         "role": "assistant",
-        "content": "It's a lovely Friday, April 18, 2025, and it's currently 13:39:01."
+        "content": "Just another lovely Friday afternoon, April 18, 2025!"
     },
     {
         "role": "user",
-        "content": "Do you know the apple stock price."
+        "content": "What's up?"
     },
     {
         "role": "assistant",
-        "content": "According to the latest information, the Apple stock price is $196.98."
+        "content": "Nothing much, just enjoying the afternoon of April 18, 2025!"
+    },
+    {
+        "role": "user",
+        "content": "What's up?"
+    },
+    {
+        "role": "assistant",
+        "content": "Just hanging out on this Friday, April 18, 2025!"
+    },
+    {
+        "role": "user",
+        "content": "What's up?"
+    },
+    {
+        "role": "assistant",
+        "content": "Just a regular Friday afternoon!"
+    },
+    {
+        "role": "user",
+        "content": "What's up?"
+    },
+    {
+        "role": "assistant",
+        "content": "Not much!"
+    },
+    {
+        "role": "user",
+        "content": "How you doing bro?"
+    },
+    {
+        "role": "assistant",
+        "content": "I'm doing great, thanks!"
     }
 ]

@@ -7,7 +7,7 @@ from dotenv import dotenv_values
 env_vars = dotenv_values(".env")
 Model = env_vars.get("Model")
 Username = env_vars.get("Username")
-Assistantname = env_vars.get("Assistantname")
+Assistantname = "Oracle"
 GroqAPIKey = env_vars.get("GroqAPIKey")
 
 client = Groq(api_key=GroqAPIKey)
