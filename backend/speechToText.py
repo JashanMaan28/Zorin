@@ -1,48 +1,5 @@
 ############################################################
-#          Speech Recognition Module {TYPE - 1} (Not Recommended)
-############################################################
-
-
-# import speech_recognition as sr
-# from backend.textToSpeech import speak
-# import eel
-
-# @eel.expose # Expose the function to JavaScript
-# def takeCommand():
-#     r = sr.Recognizer()
-
-#     with sr.Microphone() as source:
-#         print("Listening...")
-#         eel.DisplayMessage("Listening...")  # Display message in the frontend
-#         r.pause_threshold = 1
-#         r.adjust_for_ambient_noise(source)
-
-#         audio = r.listen(source, 10, 6)
-
-#     try:
-#         print("Recognizing...")
-#         eel.DisplayMessage("Recognizing...")  # Display message in the frontend
-#         query = r.recognize_google(audio, language='en-US')
-#         print(f"User said: {query}\n")
-#         eel.DisplayMessage(query)
-#         speak(query)  # Speak the recognized text
-#         eel.showHood()
-#     except Exception as e:
-#         return ""
-    
-#     return query.lower()
-
-
-
-
-
-
-
-
-
-
-############################################################
-#          Speech Recognition Module {TYPE - 2} (Best)
+#          Speech Recognition Module {TYPE - 1} (Best)
 ############################################################
 
 
@@ -54,7 +11,7 @@ from webdriver_manager.chrome import ChromeDriverManager
 import os
 import mtranslate as mt
 import eel
-from backend.textToSpeech import speak
+from textToSpeech import speak
 
 InputLanguage = "en-US"
 
@@ -139,10 +96,10 @@ def UniversalTranslator(Text):
     english_translation = mt.translate(Text, "en", "auto")
     return english_translation.capitalize()
 
-@eel.expose
+#@eel.expose
 def takeCommand():
     print("Listening...")
-    eel.DisplayMessage("Listening...")  # Display message in the frontend
+    #eel.DisplayMessage("Listening...")  # Display message in the frontend
     
     driver.get("file:///" + Link)
     driver.find_element(By.ID, value="start").click()
@@ -155,7 +112,7 @@ def takeCommand():
                 driver.find_element(By.ID, value="end").click()
                 
                 print("Recognizing...")
-                eel.DisplayMessage("Recognizing...")  # Display message in the frontend
+                #eel.DisplayMessage("Recognizing...")  # Display message in the frontend
                 
                 if InputLanguage.lower() == "en" or "en" in InputLanguage.lower():
                     result = QueryModifier(Text)
@@ -164,11 +121,46 @@ def takeCommand():
                     result = QueryModifier(UniversalTranslator(Text))
                 
                 print(f"User said: {result}\n")
-                eel.DisplayMessage(result)  # Display recognized text in the frontend
-                speak(result)  # Speak the recognized text
-                eel.showHood()
+                #eel.DisplayMessage(result)  # Display recognized text in the frontend
+                #speak(result)
+                #eel.showHood()
                 
                 return result
         except Exception as e:
             pass
+
+
+############################################################
+#          Speech Recognition Module {TYPE - 2} (Not Recommended)
+############################################################
+
+
+# import speech_recognition as sr
+# from backend.textToSpeech import speak
+# import eel
+
+# @eel.expose # Expose the function to JavaScript
+# def takeCommand():
+#     r = sr.Recognizer()
+
+#     with sr.Microphone() as source:
+#         print("Listening...")
+#         eel.DisplayMessage("Listening...")  # Display message in the frontend
+#         r.pause_threshold = 1
+#         r.adjust_for_ambient_noise(source)
+
+#         audio = r.listen(source, 10, 6)
+
+#     try:
+#         print("Recognizing...")
+#         eel.DisplayMessage("Recognizing...")  # Display message in the frontend
+#         query = r.recognize_google(audio, language='en-US')
+#         print(f"User said: {query}\n")
+#         eel.DisplayMessage(query)
+#         speak(query)  # Speak the recognized text
+#         eel.showHood()
+#     except Exception as e:
+#         return ""
+    
+#     return query.lower()
 

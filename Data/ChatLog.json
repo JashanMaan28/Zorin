@@ -1,0 +1,58 @@
+[
+    {
+        "role": "user",
+        "content": "Hey bro how are you?"
+    },
+    {
+        "role": "assistant",
+        "content": "I'm doing great, thanks for asking!"
+    },
+    {
+        "role": "user",
+        "content": "Hey bro how are you?"
+    },
+    {
+        "role": "assistant",
+        "content": "I'm doing great, thanks for asking!"
+    },
+    {
+        "role": "user",
+        "content": "Hey bro how are you?"
+    },
+    {
+        "role": "assistant",
+        "content": "I'm doing great, thanks for asking!"
+    },
+    {
+        "role": "user",
+        "content": "Hey bro what's up."
+    },
+    {
+        "role": "assistant",
+        "content": "Not much, just hanging out!"
+    },
+    {
+        "role": "user",
+        "content": "Hey bro what's up."
+    },
+    {
+        "role": "assistant",
+        "content": "Not much, just hanging out!"
+    },
+    {
+        "role": "user",
+        "content": "Way did katappa kil bahubali."
+    },
+    {
+        "role": "assistant",
+        "content": "Katappa killed Bahubali because of his loyalty to the King and the promise he made to the Queen, Sivagami."
+    },
+    {
+        "role": "user",
+        "content": "Way did katappa kil bahubali."
+    },
+    {
+        "role": "assistant",
+        "content": "Katappa killed Bahubali because of his loyalty to the King and the promise he made to the Queen, Sivagami."
+    }
+]

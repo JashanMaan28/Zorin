@@ -7,3 +7,13 @@ selenium
 mtranslate
 webdriver_manager
 speechRecognition
+AppOpener
+pywhatkit
+dotenv
+beautifulsoup4
+rich
+groq
+keyboard
+googlesearch-python
+pillow
+cohere
