@@ -1,58 +1,26 @@
 [
     {
         "role": "user",
-        "content": "Hey bro how are you?"
+        "content": "What's up?"
     },
     {
         "role": "assistant",
-        "content": "I'm doing great, thanks for asking!"
+        "content": "Not much, it's a beautiful Friday afternoon!"
     },
     {
         "role": "user",
-        "content": "Hey bro how are you?"
+        "content": "What's up?"
     },
     {
         "role": "assistant",
-        "content": "I'm doing great, thanks for asking!"
+        "content": "It's a lovely Friday, April 18, 2025, and it's currently 13:39:01."
     },
     {
         "role": "user",
-        "content": "Hey bro how are you?"
+        "content": "Do you know the apple stock price."
     },
     {
         "role": "assistant",
-        "content": "I'm doing great, thanks for asking!"
-    },
-    {
-        "role": "user",
-        "content": "Hey bro what's up."
-    },
-    {
-        "role": "assistant",
-        "content": "Not much, just hanging out!"
-    },
-    {
-        "role": "user",
-        "content": "Hey bro what's up."
-    },
-    {
-        "role": "assistant",
-        "content": "Not much, just hanging out!"
-    },
-    {
-        "role": "user",
-        "content": "Way did katappa kil bahubali."
-    },
-    {
-        "role": "assistant",
-        "content": "Katappa killed Bahubali because of his loyalty to the King and the promise he made to the Queen, Sivagami."
-    },
-    {
-        "role": "user",
-        "content": "Way did katappa kil bahubali."
-    },
-    {
-        "role": "assistant",
-        "content": "Katappa killed Bahubali because of his loyalty to the King and the promise he made to the Queen, Sivagami."
+        "content": "According to the latest information, the Apple stock price is $196.98."
     }
 ]
