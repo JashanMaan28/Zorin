@@ -96,11 +96,10 @@ def UniversalTranslator(Text):
     english_translation = mt.translate(Text, "en", "auto")
     return english_translation.capitalize()
 
-#@eel.expose
+@eel.expose
 def takeCommand():
     print("Listening...")
-    #eel.DisplayMessage("Listening...")  # Display message in the frontend
-    
+    eel.DisplayMessage("Listening...")  # Display message in the frontend
     driver.get("file:///" + Link)
     driver.find_element(By.ID, value="start").click()
 
@@ -112,7 +111,7 @@ def takeCommand():
                 driver.find_element(By.ID, value="end").click()
                 
                 print("Recognizing...")
-                #eel.DisplayMessage("Recognizing...")  # Display message in the frontend
+                eel.DisplayMessage("Recognizing...")  # Display message in the frontend
                 
                 if InputLanguage.lower() == "en" or "en" in InputLanguage.lower():
                     result = QueryModifier(Text)
@@ -121,13 +120,13 @@ def takeCommand():
                     result = QueryModifier(UniversalTranslator(Text))
                 
                 print(f"User said: {result}\n")
-                #eel.DisplayMessage(result)  # Display recognized text in the frontend
-                #speak(result)
-                #eel.showHood()
+                eel.DisplayMessage(result)  # Display recognized text in the frontend
+                eel.showHood()
                 
                 return result
         except Exception as e:
             pass
+
 
 
 ############################################################

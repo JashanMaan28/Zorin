@@ -12,16 +12,6 @@ import subprocess
 import keyboard
 import asyncio
 import os
-import eel
-
-# Assistant Sound Playing function
-@eel.expose
-def playAssistantSound():
-    music_dir = "./frontend/assets/audio/start_sound.mp3"
-    try:
-        playsound(music_dir)
-    except Exception as e:
-        print(f"Error playing sound: {e}")
 
 env_vars = dotenv_values(".env")
 GroqAPIKey = env_vars.get("GroqAPIKey")
@@ -735,17 +725,11 @@ async def Automation(commands: list[str]):
         pass
     return True
 
+# Assistant Sound Playing function
+def playAssistantSound():
+    music_dir = "./frontend/assets/audio/start_sound.mp3"
+    try:
+        playsound(music_dir)
+    except Exception as e:
+        print(f"Error playing sound: {e}")
 
-# if __name__ == "__main__":
-#     # Example usage
-#     commands = [
-#         "open google",
-#         "close notepad",
-#         "play karan aujla 48 rhymes",
-#         "content Write a sick leave",
-#         "search python programming",
-#         "youtube search AI news",
-#         "system mute"
-#     ]
-    
-#     asyncio.run(Automation(commands))

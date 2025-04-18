@@ -5,7 +5,7 @@ import datetime
 from dotenv import dotenv_values
 
 env_vars = dotenv_values(".env")
-
+Model = env_vars.get("Model")
 Username = env_vars.get("Username")
 Assistantname = env_vars.get("Assistantname")
 GroqAPIKey = env_vars.get("GroqAPIKey")
@@ -92,7 +92,7 @@ def RealtimeSearchEngine(prompt):
     )
 
     completion = client.chat.completions.create(
-        model="llama3-70b-8192",
+        model=Model,
         messages=SystemChatBot + [{
             "role": "user",
             "content": Information()

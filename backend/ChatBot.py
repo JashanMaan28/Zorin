@@ -2,13 +2,11 @@ from groq import Groq
 from json import dump, load
 import datetime
 from dotenv import dotenv_values
-from textToSpeech import speak
-from speechToText import takeCommand
 
 env_vars = dotenv_values(".env")
 Username = env_vars.get("Username")
 GroqAPIKey = env_vars.get("GroqAPIKey")
-
+Model = env_vars.get("Model")
 client = Groq(api_key=GroqAPIKey)
 
 messages = []
@@ -70,7 +68,7 @@ def ChatBot(Query):
             )
 
             completion = client.chat.completions.create(
-                model="llama3-70b-8192",
+                model=Model,
                 messages=SystemChatBot + [{
                     "role": "user",
                     "content": RealTimeInformation()
@@ -109,10 +107,3 @@ def ChatBot(Query):
             dump([], f, indent=4)
 
         return "An error occurred while processing your query. Please try again later."
-
-    
-if __name__ == "__main__":
-    while True:
-        user_input = takeCommand()
-        print(ChatBot(user_input))
-        speak(ChatBot(user_input))
