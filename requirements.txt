@@ -3,3 +3,6 @@ playsound==1.2.2
 pygame
 asyncio
 edge_tts
+selenium
+mtranslate
+webdriver_manager
