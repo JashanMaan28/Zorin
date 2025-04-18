@@ -1,6 +1,8 @@
 from playsound import playsound
+import eel
 
 # Assistant Sound Playing function
+@eel.expose
 def playAssistantSound():
     music_dir = "./frontend/assets/audio/start_sound.mp3"
     try:
