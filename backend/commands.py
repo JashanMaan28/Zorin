@@ -22,13 +22,17 @@ subprocess = []
 Functions = ["open", "close", "play", "system", "content", "google search", "youtube search"]
 
 @eel.expose
-def MainExecution():
+def MainExecution(message=1):
     TaskExecution = False
     ImageExecution = False
     ImageGenerationQuery = ""
 
-    eel.DisplayMessage("Listening...")
-    Query = takeCommand()
+    if message == 1:
+        eel.DisplayMessage("Listening...")
+        Query = takeCommand()
+    else:
+        Query = message
+
     eel.DisplayMessage(Query)
     Decision = FirstLayerDMM(Query)
 
