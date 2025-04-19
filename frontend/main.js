@@ -1,5 +1,6 @@
 $(document).ready(function () {
-    
+
+    // Text animation setup
     $('.text').textillate({
         loop: true,
         sync: true,
@@ -11,7 +12,7 @@ $(document).ready(function () {
         }
     });
 
-    // Siri Configuration
+    // Siri Wave Configuration
     var siriWave = new SiriWave({
         container: document.getElementById("siri-container"),
         width: 900,
@@ -20,11 +21,10 @@ $(document).ready(function () {
         amplitude: "2",
         speed: "0.05",
         autostart: true
-      });
+    });
 
     // Siri Message Animation
-      $('.siri-message').textillate({
-        // loop: true,
+    $('.siri-message').textillate({
         sync: true,
         in: {
             effect: 'fadeInUp',
@@ -35,119 +35,98 @@ $(document).ready(function () {
             sync: true,
         }
     });
-    
-    // Mic Button Click Event
+
+    // Mic button click
     $("#MicBtn").click(function () {
         $("#oval").attr("hidden", true);
         $("#SiriWave").attr("hidden", false);
         eel.MainExecution()();
     });
 
-
-    // Hot key press Assistant Activation Event
-    function doc_keyUP(e) {
-
+    // Hotkey trigger
+    document.addEventListener('keyup', function (e) {
         if (e.key === 'j' && e.metaKey) {
             $("#oval").attr("hidden", true);
             $("#SiriWave").attr("hidden", false);
             eel.MainExecution()();
         }
-    }
-    document.addEventListener('keyup', doc_keyUP, false);
+    }, false);
 
-    // to PlayAssistant on typing a message
-    function PlayAssistant(message) {
+    // Toggle mic/send buttons based on input
+    $("#chatbox").keyup(function () {
+        const message = $(this).val();
+        ShowHideButton(message);
+    });
 
-        if (message != "") {
-            $("#oval").attr("hidden", true);
-            $("#SiriWave").attr("hidden", false);
-            eel.MainExecution(message)();
-            $("#chatbox").val("")
-            $("#MicBtn").attr("hidden", false);
-            $("#SendBtn").attr("hidden", true);
+    // Send message via button
+    $("#SendBtn").click(function () {
+        const message = $("#chatbox").val();
+        PlayAssistant(message);
+    });
+
+    // Send message via Enter key
+    $("#chatbox").keypress(function (e) {
+        if (e.which === 13) {
+            const message = $("#chatbox").val();
+            PlayAssistant(message);
         }
-    }
+    });
 
-    // toogle fucntion to hide and display mic and send button 
     function ShowHideButton(message) {
-        if (message.length == 0) {
+        if (message.length === 0) {
             $("#MicBtn").attr('hidden', false);
             $("#SendBtn").attr('hidden', true);
-        }
-        else {
+        } else {
             $("#MicBtn").attr('hidden', true);
             $("#SendBtn").attr('hidden', false);
         }
     }
 
-    // key up event handler on text box
-    $("#chatbox").keyup(function () {
-
-        let message = $("#chatbox").val();
-        ShowHideButton(message)
-    
-    });
-    
-    // send button event handler
-    $("#SendBtn").click(function () {
-    
-        let message = $("#chatbox").val()
-        PlayAssistant(message)
-    
-    });
-    
-
-    // enter press event handler on chat box
-    $("#chatbox").keypress(function (e) {
-        key = e.which;
-        if (key == 13) {
-            let message = $("#chatbox").val()
-            PlayAssistant(message)
+    function PlayAssistant(message) {
+        if (message.trim() !== "") {
+            $("#oval").attr("hidden", true);
+            $("#SiriWave").attr("hidden", false);
+            eel.MainExecution(message)();
+            $("#chatbox").val("");
+            ShowHideButton("");
         }
-    });
+    }
 
-    eel.get_chat_log()().then(data => {
-        console.log("Chat log:", data);
-        renderChatMessages(data);
-    });    
-
-    // Load and render messages from ChatLog.json
-    fetch('ChatLog.json')
-    .then(response => {
-        if (!response.ok) {
-            throw new Error("Could not load chat log.");
-        }
-        return response.json();
-    })
-    .then(messages => {
-        renderChatMessages(messages);
-    })
-    .catch(error => {
-        console.error("Error loading chat log:", error);
-    });
-
-    // Function to render messages into chat container
+    // Function to render chat messages with animation
     function renderChatMessages(messages) {
         const chatCanvas = document.getElementById("chat-canvas-body");
-    
+        chatCanvas.innerHTML = ""; // Clear existing messages
+
         messages.forEach((msg, index) => {
             const msgDiv = document.createElement("div");
-            const role = msg.role;
-    
-            // Assign class for role and position
-            if (role === 'user') {
-                msgDiv.className = "sender_message width-size bottom-right chat-message-animate";
-            } else if (role === 'assistant') {
-                msgDiv.className = "receiver_message width-size bottom-left chat-message-animate";
-            }
-    
-            // Add a slight delay if you want a staggered feel
-            msgDiv.style.animationDelay = `${index * 0.1}s`;
-    
+
+            msgDiv.className =
+                msg.role === 'user'
+                    ? "sender_message width-size bottom-right chat-message-animate"
+                    : "receiver_message width-size bottom-left chat-message-animate";
+
+            msgDiv.style.animationDelay = `${index * 0.05}s`;
             msgDiv.innerText = msg.content;
             chatCanvas.appendChild(msgDiv);
         });
-    }
-    
 
+        // Scroll to latest
+        chatCanvas.scrollTop = chatCanvas.scrollHeight;
+    }
+
+    // Real-time message updating using polling
+    let lastChatData = [];
+
+    function fetchAndUpdateChat() {
+        eel.get_chat_log()().then(data => {
+            if (JSON.stringify(data) !== JSON.stringify(lastChatData)) {
+                lastChatData = data;
+                renderChatMessages(data);
+            }
+        });
+    }
+
+    // Initial load and periodic updates every 2 seconds
+    fetchAndUpdateChat();
+    setInterval(fetchAndUpdateChat, 2000);
 });
