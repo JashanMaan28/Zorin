@@ -88,12 +88,91 @@
         id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
         <div class="offcanvas-header">
             <h5 class="offcanvas-title text-white" id="offcanvasScrollingLabel">Chats</h5>
-            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"
+                aria-label="Close"></button>
         </div>
         <div id="chat-canvas-body" class="offcanvas-body">
             <!-- Chatting code here -->
             <div id="chat-canvas-body"></div>
 
+        </div>
+    </div>
+
+    <!-- Settings Panel -->
+    <div class="offcanvas offcanvas-end settings-canvas" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1"
+        id="settingsPanel" aria-labelledby="settingsPanelLabel">
+        <div class="offcanvas-header">
+            <h5 class="offcanvas-title text-white" id="settingsPanelLabel">Settings</h5>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"
+                aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+            <div class="settings-container">
+                <div class="setting-item">
+                    <label for="usernameInput" class="form-label">Username</label>
+                    <input type="text" class="form-control settings-input" id="usernameInput"
+                        placeholder="Your username">
+                </div>
+
+                <div class="setting-item">
+                    <label for="modelSelect" class="form-label">Model</label>
+                    <select class="form-select settings-input" id="modelSelect">
+                        <option value="llama3-70b-8192">llama3-70b-8192</option>
+                        <option value="gpt-4o">gpt-4o</option>
+                        <option value="claude-3-opus">claude-3-opus</option>
+                        <option value="claude-3-sonnet">claude-3-sonnet</option>
+                        <option value="mixtral-8x7b">mixtral-8x7b</option>
+                    </select>
+                </div>
+
+                <div class="setting-item">
+                    <label for="cohereApiKey" class="form-label">Cohere API Key</label>
+                    <div class="input-group settings-input-group">
+                        <input type="password" class="form-control settings-input no-right-border" id="cohereApiKey"
+                            placeholder="Enter API key">
+                        <span class="input-group-text key-toggle-btn" data-target="cohereApiKey">
+                            <i class="bi bi-eye"></i>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="setting-item">
+                    <label for="groqApiKey" class="form-label">Groq API Key</label>
+                    <div class="input-group settings-input-group">
+                        <input type="password" class="form-control settings-input no-right-border" id="groqApiKey"
+                            placeholder="Enter API key">
+                        <span class="input-group-text key-toggle-btn" data-target="groqApiKey">
+                            <i class="bi bi-eye"></i>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="setting-item">
+                    <label for="huggingFaceApiKey" class="form-label">HuggingFace API Key</label>
+                    <div class="input-group settings-input-group">
+                        <input type="password" class="form-control settings-input no-right-border"
+                            id="huggingFaceApiKey" placeholder="Enter API key">
+                        <span class="input-group-text key-toggle-btn" data-target="huggingFaceApiKey">
+                            <i class="bi bi-eye"></i>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="setting-item">
+                    <label for="pvporcupineAccessKey" class="form-label">Pvporcupine Access Key</label>
+                    <div class="input-group settings-input-group">
+                        <input type="password" class="form-control settings-input no-right-border"
+                            id="pvporcupineAccessKey" placeholder="Enter access key">
+                        <span class="input-group-text key-toggle-btn" data-target="pvporcupineAccessKey">
+                            <i class="bi bi-eye"></i>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="d-grid gap-2 mt-4">
+                    <button class="btn save-settings-btn" type="button" id="saveSettingsBtn">Save Settings</button>
+                </div>
+            </div>
         </div>
     </div>
 

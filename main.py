@@ -4,6 +4,10 @@ import json
 
 # Import MainExecution but don't run it automatically
 from backend.commands import MainExecution
+from backend.settings import get_env_settings, save_env_settings
+from backend.chatlog_manager import manage_chatlog
+
+manage_chatlog()
 
 def start():
     eel.init('frontend')
@@ -19,3 +23,4 @@ def get_chat_log():
     except Exception as e:
         print("Error loading chat log:", e)
         return []
+
