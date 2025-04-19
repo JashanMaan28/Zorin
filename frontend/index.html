@@ -41,43 +41,61 @@
                                 <span class="circle"></span>
                             </div>
                         </div>
-                        
+
                         <div style="position: absolute; bottom: 200px; text-align: center; width: 100%;">
                             <h5 class="text-light text ">Ask Me Anything</h5>
-                            
+
                             <div style="margin-top: 50px;">
                                 <div id="TextInput" class="d-flex">
-                                    <input class="input-field" type="text" name="chatbox" id="chatbox" placeholder="Your question here...">
-                                    <button id="SendBtn" class="glow-on-hover" hidden><i class="bi bi-send"></i></button>
+                                    <input class="input-field" type="text" name="chatbox" id="chatbox"
+                                        placeholder="Your question here...">
+                                    <button id="SendBtn" class="glow-on-hover" hidden><i
+                                            class="bi bi-send"></i></button>
                                     <button id="MicBtn" class="glow-on-hover"><i class="bi bi-mic"></i></button>
-                                    <button id="ChatBtn" class="glow-on-hover"><i class="bi bi-chat-dots"></i></button>
+                                    <button id="ChatBtn" class="glow-on-hover" data-bs-toggle="offcanvas"
+                                        data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling"><i
+                                            class="bi bi-chat-dots"></i></button>
                                     <button id="SettingsBtn" class="glow-on-hover"><i class="bi bi-gear"></i></button>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                    </div>
-                </div>
             </div>
-        </section>
+    </div>
+    </div>
+    </section>
 
-        <section class="mb-4" id="SiriWave" hidden>
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="d-flex justify-content-center align-items-center" style="height: 100vh;">
-                            <div class="">
-                                <p class="text-start text-light mb-4 siri-message">Hey, This is Zorin!</p>
-                                <div id="siri-container"></div>
-                            </div>
+    <section class="mb-4" id="SiriWave" hidden>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="d-flex justify-content-center align-items-center" style="height: 100vh;">
+                        <div class="">
+                            <p class="text-start text-light mb-4 siri-message">Hey, This is Zorin!</p>
+                            <div id="siri-container"></div>
                         </div>
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
     </div>
 
+    </div>
+
+    <div class="offcanvas offcanvas-start chat-canvas" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1"
+        id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
+        <div class="offcanvas-header">
+            <h5 class="offcanvas-title text-white" id="offcanvasScrollingLabel">Chats</h5>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div id="chat-canvas-body" class="offcanvas-body">
+            <!-- Chatting code here -->
+            <div id="chat-canvas-body"></div>
+
+        </div>
+    </div>
 
     <!--Jquery  -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
@@ -106,4 +124,5 @@
     <script src="controller.js"></script>
 
 </body>
+
 </html>

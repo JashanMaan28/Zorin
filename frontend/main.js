@@ -24,7 +24,7 @@ $(document).ready(function () {
 
     // Siri Message Animation
       $('.siri-message').textillate({
-        loop: true,
+        // loop: true,
         sync: true,
         in: {
             effect: 'fadeInUp',
@@ -105,5 +105,49 @@ $(document).ready(function () {
             PlayAssistant(message)
         }
     });
+
+    eel.get_chat_log()().then(data => {
+        console.log("Chat log:", data);
+        renderChatMessages(data);
+    });    
+
+    // Load and render messages from ChatLog.json
+    fetch('ChatLog.json')
+    .then(response => {
+        if (!response.ok) {
+            throw new Error("Could not load chat log.");
+        }
+        return response.json();
+    })
+    .then(messages => {
+        renderChatMessages(messages);
+    })
+    .catch(error => {
+        console.error("Error loading chat log:", error);
+    });
+
+    // Function to render messages into chat container
+    function renderChatMessages(messages) {
+        const chatCanvas = document.getElementById("chat-canvas-body");
+    
+        messages.forEach((msg, index) => {
+            const msgDiv = document.createElement("div");
+            const role = msg.role;
+    
+            // Assign class for role and position
+            if (role === 'user') {
+                msgDiv.className = "sender_message width-size bottom-right chat-message-animate";
+            } else if (role === 'assistant') {
+                msgDiv.className = "receiver_message width-size bottom-left chat-message-animate";
+            }
+    
+            // Add a slight delay if you want a staggered feel
+            msgDiv.style.animationDelay = `${index * 0.1}s`;
+    
+            msgDiv.innerText = msg.content;
+            chatCanvas.appendChild(msgDiv);
+        });
+    }
+    
 
 });
