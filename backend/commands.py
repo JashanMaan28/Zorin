@@ -14,7 +14,7 @@ import eel
 
 env_vars = dotenv_values(".env")
 Username = env_vars.get("Username")
-Assistantname = "Zorin"
+Assistantname = "Jarvis"
 DefaultMessage = f'''{Username} : Hello {Assistantname}, How are you?
 {Assistantname} : Welcome {Username}. I am doing well. How may I help you?'''
 subprocess_list = []

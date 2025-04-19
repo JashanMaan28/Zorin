@@ -80,8 +80,6 @@ while True:
 
 
 
-
-
 # while True:
 #     try:
 #         with open(r"Data\Files\ImageGeneration.data", "r") as f:
