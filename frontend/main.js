@@ -36,19 +36,50 @@ $(document).ready(function () {
         }
     });
 
-    // Mic button click
+    // Animated transition to show Siri interface
+    function animateToSiri() {
+        // First animate oval/hood down and fade out
+        $("#oval").animate({
+            opacity: 0,
+            marginTop: "50px" // Move downward while fading out
+        }, 800, function() {
+            // After animation completes, hide it
+            $("#oval").attr("hidden", true);
+            // Reset position for next time
+            $("#oval").css("marginTop", "0px");
+            
+            // Prepare SiriWave to slide up from below
+            $("#SiriWave").attr("hidden", false);
+            $("#SiriWave").css({
+                "opacity": 0,
+                "marginTop": "50px" // Start below its final position
+            });
+            
+            // Animate SiriWave coming up
+            $("#SiriWave").animate({
+                opacity: 1,
+                marginTop: "0px"
+            }, 800);
+        });
+    }
+
+    // Mic button click with animation
     $("#MicBtn").click(function () {
-        $("#oval").attr("hidden", true);
-        $("#SiriWave").attr("hidden", false);
-        eel.MainExecution()();
+        animateToSiri();
+        // Add slight delay before triggering MainExecution to allow animation to begin
+        setTimeout(function() {
+            eel.MainExecution()();
+        }, 300);
     });
 
-    // Hotkey trigger
+    // Hotkey trigger with animation
     document.addEventListener('keyup', function (e) {
         if (e.key === 'j' && e.metaKey) {
-            $("#oval").attr("hidden", true);
-            $("#SiriWave").attr("hidden", false);
-            eel.MainExecution()();
+            animateToSiri();
+            // Add slight delay before triggering MainExecution to allow animation to begin
+            setTimeout(function() {
+                eel.MainExecution()();
+            }, 300);
         }
     }, false);
 
@@ -58,17 +89,33 @@ $(document).ready(function () {
         ShowHideButton(message);
     });
 
-    // Send message via button
+    // Send message via button with animation
     $("#SendBtn").click(function () {
         const message = $("#chatbox").val();
-        PlayAssistant(message);
+        if (message.trim() !== "") {
+            animateToSiri();
+            // Add slight delay before triggering MainExecution to allow animation to begin
+            setTimeout(function() {
+                eel.MainExecution(message)();
+                $("#chatbox").val("");
+                ShowHideButton("");
+            }, 300);
+        }
     });
 
-    // Send message via Enter key
+    // Send message via Enter key with animation
     $("#chatbox").keypress(function (e) {
         if (e.which === 13) {
             const message = $("#chatbox").val();
-            PlayAssistant(message);
+            if (message.trim() !== "") {
+                animateToSiri();
+                // Add slight delay before triggering MainExecution to allow animation to begin
+                setTimeout(function() {
+                    eel.MainExecution(message)();
+                    $("#chatbox").val("");
+                    ShowHideButton("");
+                }, 300);
+            }
         }
     });
 
@@ -82,13 +129,16 @@ $(document).ready(function () {
         }
     }
 
+    // Original PlayAssistant function is now replaced by the animateToSiri + delayed execution pattern
     function PlayAssistant(message) {
         if (message.trim() !== "") {
-            $("#oval").attr("hidden", true);
-            $("#SiriWave").attr("hidden", false);
-            eel.MainExecution(message)();
-            $("#chatbox").val("");
-            ShowHideButton("");
+            animateToSiri();
+            // Add slight delay before triggering MainExecution
+            setTimeout(function() {
+                eel.MainExecution(message)();
+                $("#chatbox").val("");
+                ShowHideButton("");
+            }, 300);
         }
     }
 
