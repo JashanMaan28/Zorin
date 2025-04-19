@@ -14,4 +14,10 @@ $(document).ready(function () {
         $("#SiriWave").attr("hidden", true);
     }
 
+    eel.expose(showSiri);
+    function showSiri() {
+        $("#oval").attr("hidden", true);
+        $("#SiriWave").attr("hidden", false);
+    }
+
 });

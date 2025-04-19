@@ -8,7 +8,6 @@ from dotenv import dotenv_values
 from asyncio import run
 from time import sleep
 import subprocess
-import threading
 import json
 import os
 import eel
@@ -18,7 +17,7 @@ Username = env_vars.get("Username")
 Assistantname = "Zorin"
 DefaultMessage = f'''{Username} : Hello {Assistantname}, How are you?
 {Assistantname} : Welcome {Username}. I am doing well. How may I help you?'''
-subprocess = []
+subprocess_list = []
 Functions = ["open", "close", "play", "system", "content", "google search", "youtube search"]
 
 @eel.expose
@@ -51,6 +50,8 @@ def MainExecution(message=1):
         if "generate " in queries:
             ImageGenerationQuery = str(queries)
             ImageExecution = True
+            speak("Generating Images, The generated images will be on your screen in less than a minute sir.")
+            eel.showHood()
     
     for queries in Decision:
         if TaskExecution == False:
@@ -61,15 +62,15 @@ def MainExecution(message=1):
     
     if ImageExecution == True:
 
-        with open(r"Frontend\Files\ImageGeneration.data", "w") as file:
-            file.write(f"{ImageGenerationQuery}, True")
+        with open(r"Data\Files\ImageGeneration.data", "w") as file:
+            json.dump({"prompt": ImageGenerationQuery, "status": True}, file)
 
         try:
 
             p1 = subprocess.Popen(['python', r'Backend\ImageGeneration.py'],
                                   stdout=subprocess.PIPE, stderr=subprocess.PIPE,
                                   stdin=subprocess.PIPE, shell=False)
-            subprocess.append(p1)
+            subprocess_list.append(p1)
         
         except Exception as e:
             print(f"Error Starting ImageGeneration.py: {e}")

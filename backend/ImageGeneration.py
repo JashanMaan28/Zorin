@@ -4,6 +4,7 @@ from PIL import Image
 import requests
 from dotenv import get_key
 import os
+import json
 from time import sleep
 
 def open_images(prompt):
@@ -19,12 +20,12 @@ def open_images(prompt):
             img = Image.open(image_path)
             print(f"Opening image: {image_path}")
             img.show()
-            sleep(1)  # Pause for 1 second before opening the next image
+            
 
         except IOError:
             print(f"Error opening image: {image_path}")
 
-API_URL = "https://api-inference.huggingface.co/models/stabilityai/stable-diffusion-xl-base-1.0"
+API_URL = "https://api-inference.huggingface.co/models/black-forest-labs/FLUX.1-schnell"
 headers = {"Authorization": f"Bearer {get_key('.env', 'HuggingFaceAPIKey')}"}
 
 async def query(payload):
@@ -34,18 +35,19 @@ async def query(payload):
 async def generate_image(prompt: str):
     tasks = []
 
-    for _ in range(4):
+    for _ in range(3):  # Only create 3 images
         payload = {
-            "inputs": f"{prompt}, quality=4k, sharpness=maximum, Ultra High details, high resoulution, seed = {randint(0, 1000000)}",
+            "inputs": f"{prompt}, quality=4k, sharpness=maximum, Ultra High details, high resolution, seed={randint(0, 1000000)}",
         }
         task = asyncio.create_task(query(payload))
         tasks.append(task)
 
-        image_bytes_list = await asyncio.gather(*tasks)
+    # Wait for all tasks AFTER creating them
+    image_bytes_list = await asyncio.gather(*tasks)
 
-        for i, image_bytes in enumerate(image_bytes_list):
-            with open(fr"Data\{prompt.replace(' ', '_')}{i + 1}.jpg", "wb") as f:
-                f.write(image_bytes)
+    for i, image_bytes in enumerate(image_bytes_list):
+        with open(fr"Data\{prompt.replace(' ', '_')}{i + 1}.jpg", "wb") as f:
+            f.write(image_bytes)
 
 def GenerateImages(prompt: str):
     asyncio.run(generate_image(prompt))
@@ -55,17 +57,19 @@ def GenerateImages(prompt: str):
 while True:
     try:
         with open(r"Data\Files\ImageGeneration.data", "r") as f:
-            Data: str = f.read()
+            data = json.load(f)
 
-        Prompt, Status = Data.split(",")
+        Prompt = data.get("prompt", "")
+        Status = data.get("status", False)
 
-        if Status == "True":
+        if Status == True:
             print("Generating images...")
-            ImageStatus = GenerateImages(prompt=Prompt)
+            GenerateImages(prompt=Prompt)
 
             with open(r"Data\Files\ImageGeneration.data", "w") as f:
-                f.write("False,False")
-                break 
+                json.dump({"prompt": "", "status": False}, f)
+
+            break
 
         else:
             sleep(1)
@@ -73,3 +77,40 @@ while True:
     except Exception as e:
         print(e)
 
+
+
+
+
+
+# while True:
+#     try:
+#         with open(r"Data\Files\ImageGeneration.data", "r") as f:
+#             data = json.load(f)
+
+#         Prompt = data.get("prompt", "")
+#         Status = data.get("status", False)
+
+#         if Status == True:
+#             print("Generating images...")
+#             GenerateImages(prompt=Prompt)
+
+#             # Notify after image generation is done
+#             eel.showSiri()
+#             eel.DisplayMessage("✅ The images have been successfully generated, sir.")
+#             speak("✅ The images have been successfully generated, sir.")
+#             eel.DisplayMessage("🖼️ Please take a look at your screen.")
+#             speak("🖼️ Please take a look at your screen.")
+#             eel.DisplayMessage("If you don’t see them immediately, they should appear momentarily.")
+#             speak("If you don’t see them immediately, they should appear momentarily.")
+    
+#             # Update the ImageGeneration.data file to reflect the completion status
+#             with open(r"Data\Files\ImageGeneration.data", "w") as f:
+#                 json.dump({"prompt": "", "status": False}, f)
+
+#             break
+
+#         else:
+#             sleep(1)
+
+#     except Exception as e:
+#         print(e)
