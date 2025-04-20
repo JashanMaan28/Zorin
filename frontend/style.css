@@ -322,18 +322,23 @@ body {
 }
 
 .save-settings-btn {
-  background-color: rgba(5, 115, 138, 0.6);
-  border: 1px solid #0ab0d1;
-  color: white;
+  background-color: rgba(5, 115, 138, 0.8);
+  border: 2px solid #0ab0d1;
+  color: #00f5ff !important;
   backdrop-filter: blur(5px);
   -webkit-backdrop-filter: blur(5px);
   transition: all 0.3s ease;
+  font-weight: 600; 
+  text-shadow: 0 0 5px rgba(10, 176, 209, 0.5); 
+  box-shadow: 0 0 8px rgba(10, 176, 209, 0.3); 
+  padding: 10px; 
+  margin-top: 10px; 
 }
 
 .save-settings-btn:hover {
   background-color: rgba(10, 176, 209, 0.8);
   box-shadow: 0 0 15px rgba(10, 176, 209, 0.8);
-  color: white;
+  color: white !important;
 }
 
 /* Eye toggle button styles */
