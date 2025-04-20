@@ -183,3 +183,4 @@ Voice.html
 # ChatLog
 backend/chatlog_archives
 .last_session_date
+chatlog_archives/

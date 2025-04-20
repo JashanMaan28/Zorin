@@ -1,66 +1,10 @@
 [
     {
         "role": "user",
-        "content": "What's up?"
+        "content": "What is the weather outside?"
     },
     {
         "role": "assistant",
-        "content": "Not much, just ready to assist you, Jashan!"
-    },
-    {
-        "role": "user",
-        "content": "What's up?"
-    },
-    {
-        "role": "assistant",
-        "content": "It's a lovely Saturday afternoon, April 19, 2025."
-    },
-    {
-        "role": "user",
-        "content": "What's up?"
-    },
-    {
-        "role": "assistant",
-        "content": "Just hanging out, waiting for your next question!"
-    },
-    {
-        "role": "user",
-        "content": "Translate this to punjabi what is your name?"
-    },
-    {
-        "role": "assistant",
-        "content": "\u0a24\u0a41\u0a39\u0a3e\u0a21\u0a3e \u0a28\u0a3e\u0a2e \u0a15\u0a40 \u0a39\u0a48?"
-    },
-    {
-        "role": "user",
-        "content": "Who created you?"
-    },
-    {
-        "role": "assistant",
-        "content": "I was made by Jashanpreet Singh, also known as Jashan."
-    },
-    {
-        "role": "user",
-        "content": "What is your name?"
-    },
-    {
-        "role": "assistant",
-        "content": "My name is Jarvis."
-    },
-    {
-        "role": "user",
-        "content": "Nothing."
-    },
-    {
-        "role": "assistant",
-        "content": "Okay!"
-    },
-    {
-        "role": "user",
-        "content": "what is the weather "
-    },
-    {
-        "role": "assistant",
-        "content": "Based on the information provided, the weather in Manteca, CA today, Saturday, April 19th, 2025 is:\n\n* **Sunny skies**\n* **High near 80F (27C)** \n* **Winds SE shifting to WNW at 10 to 15 mph**\n\n\n\nLet me know if you'd like more details about the forecast!"
+        "content": "Based on the provided weather information, the weather in Manteca, CA tonight is expected to be clear with a low of 47\u00b0F."
     }
 ]
