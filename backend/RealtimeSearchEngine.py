@@ -5,7 +5,7 @@ import datetime
 from dotenv import dotenv_values
 
 env_vars = dotenv_values(".env")
-Model = env_vars.get("Model")
+Model = env_vars.get("RSEModel")
 Username = env_vars.get("Username")
 Assistantname = "Jarvis"
 GroqAPIKey = env_vars.get("GroqAPIKey")

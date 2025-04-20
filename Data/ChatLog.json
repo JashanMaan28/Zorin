@@ -54,5 +54,13 @@
     {
         "role": "assistant",
         "content": "Okay!"
+    },
+    {
+        "role": "user",
+        "content": "what is the weather "
+    },
+    {
+        "role": "assistant",
+        "content": "Based on the information provided, the weather in Manteca, CA today, Saturday, April 19th, 2025 is:\n\n* **Sunny skies**\n* **High near 80F (27C)** \n* **Winds SE shifting to WNW at 10 to 15 mph**\n\n\n\nLet me know if you'd like more details about the forecast!"
     }
 ]
