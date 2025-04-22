@@ -1,10 +1,26 @@
 [
     {
         "role": "user",
-        "content": "What is the weather outside?"
+        "content": "What's up bro? what's up?"
     },
     {
         "role": "assistant",
-        "content": "Based on the provided weather information, the weather in Manteca, CA tonight is expected to be clear with a low of 47\u00b0F."
+        "content": "Not much, just here and ready to help, Jashan. What do you need?"
+    },
+    {
+        "role": "user",
+        "content": "What's up?"
+    },
+    {
+        "role": "assistant",
+        "content": "Everything's good, just waiting for your question."
+    },
+    {
+        "role": "user",
+        "content": "What do you think about the weather outside?"
+    },
+    {
+        "role": "assistant",
+        "content": "I don't have real-time access to your location, but I can suggest checking a weather app or website for the current weather outside."
     }
 ]

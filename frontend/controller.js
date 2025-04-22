@@ -14,7 +14,7 @@ $(document).ready(function () {
         $("#SiriWave").animate({
             opacity: 0,
             marginTop: "-50px" // Move upward while fading out
-        }, 800, function() {
+        }, 200, function() {
             // After animation completes, hide it
             $("#SiriWave").attr("hidden", true);
             // Reset position for next time
@@ -31,7 +31,7 @@ $(document).ready(function () {
             $("#oval").animate({
                 opacity: 1,
                 marginTop: "0px"
-            }, 800);
+            }, 200);
         });
     }
 
@@ -42,7 +42,7 @@ $(document).ready(function () {
         $("#oval").animate({
             opacity: 0,
             marginTop: "50px" // Move downward while fading out
-        }, 800, function() {
+        }, 200, function() {
             // After animation completes, hide it
             $("#oval").attr("hidden", true);
             // Reset position for next time
@@ -59,7 +59,7 @@ $(document).ready(function () {
             $("#SiriWave").animate({
                 opacity: 1,
                 marginTop: "0px"
-            }, 800);
+            }, 200);
         });
     }
 
