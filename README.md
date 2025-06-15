@@ -74,5 +74,5 @@ A smart and modern desktop assistant powered by AI. Built using **Python** and *
 ## 📬 Contact
 
 Made with ❤️ by **Jashanpreet Singh**  
-Have questions? Reach out at [jashan.web.app](https://jashanpreetsingh.tech/)
+Have questions? Reach out at [jashanpreetsingh.tech](https://jashanpreetsingh.tech/)
 ```
