@@ -1,6 +1,6 @@
 # 🧠 ZORIN
 
-A smart and modern desktop assistant powered by AI. Built using **Python** and **React**, this app blends voice & text interaction with system control features, all in one place.
+A smart and modern desktop assistant powered by AI. Built using **Python** and **JS**, this app blends voice & text interaction with system control features, all in one place.
 
 ---
 
@@ -20,9 +20,9 @@ A smart and modern desktop assistant powered by AI. Built using **Python** and *
 ## 🛠️ Built With
 
 - **Python** (backend, AI logic, system control)  
-- **React + Tailwind** (frontend)  
-- **Flask / FastAPI** (API communication)  
-- **MediaPipe, OpenAI, ElevenLabs**, and more  
+- **HTML + CSS + JS** (frontend)  
+- **Eel** (API communication)  
+- **Edge TTS, Llama 4, Groq**, and more  
 
 ---
 
@@ -74,5 +74,5 @@ A smart and modern desktop assistant powered by AI. Built using **Python** and *
 ## 📬 Contact
 
 Made with ❤️ by **Jashanpreet Singh**  
-Have questions? Reach out at [jashan.web.app](https://jashan.web.app/)
+Have questions? Reach out at [jashan.web.app](https://jashanpreetsingh.tech/)
 ```
