@@ -32,30 +32,52 @@
         <section id="oval" class="mb-4" style="height: 85vh;">
             <div class="container h-100">
                 <div class="row h-100">
-                    <div class="col-md-12 d-flex justify-content-center align-items-center">
-                        <canvas id="canvasOne" width="700" height="420" style="position: absolute;"></canvas>
-                        <div id="ZorinHood">
-                            <div class="square">
-                                <span class="circle"></span>
-                                <span class="circle"></span>
-                                <span class="circle"></span>
+                    <div class="col-md-12 d-flex justify-content-center align-items-center">                        <canvas id="canvasOne" width="700" height="420" style="position: absolute;"></canvas>
+                        <!-- Modern AI Assistant Orb -->
+                        <div id="ZorinHood" class="ai-orb-container">
+                            <div class="square" id="aiOrb">
+                                <!-- Core orb layer -->
+                                <span class="orb-core"></span>
+                                <!-- Secondary glow layer -->
+                                <span class="orb-glow"></span>
+                                <!-- Inner highlight for depth -->
+                                <span class="orb-highlight"></span>
                             </div>
-                        </div>
-
-                        <div style="position: absolute; bottom: 200px; text-align: center; width: 100%;">
-                            <h5 class="text-light text ">Ask Me Anything</h5>
+                        </div>                        <div style="position: absolute; bottom: 200px; text-align: center; width: 100%;">
+                            <h5 class="text-light text">Ask Me Anything</h5>
 
                             <div style="margin-top: 50px;">
-                                <div id="TextInput" class="d-flex">
+                                <div id="TextInput" class="d-flex align-items-center">
                                     <input class="input-field" type="text" name="chatbox" id="chatbox"
-                                        placeholder="Your question here...">
-                                    <button id="SendBtn" class="glow-on-hover" hidden><i
-                                            class="bi bi-send"></i></button>
-                                    <button id="MicBtn" class="glow-on-hover"><i class="bi bi-mic"></i></button>
+                                        placeholder="Type your message here..." autocomplete="off" 
+                                        spellcheck="true" maxlength="500">
+                                    <button id="SendBtn" class="glow-on-hover" hidden title="Send message" 
+                                        aria-label="Send message">
+                                        <i class="bi bi-send"></i>
+                                    </button>
+                                    <button id="MicBtn" class="glow-on-hover" title="Voice input" 
+                                        aria-label="Voice input">
+                                        <i class="bi bi-mic"></i>
+                                    </button>
                                     <button id="ChatBtn" class="glow-on-hover" data-bs-toggle="offcanvas"
-                                        data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling"><i
-                                            class="bi bi-chat-dots"></i></button>
-                                    <button id="SettingsBtn" class="glow-on-hover"><i class="bi bi-gear"></i></button>
+                                        data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling" 
+                                        title="Chat history" aria-label="Open chat history">
+                                        <i class="bi bi-chat-dots"></i>
+                                    </button>
+                                    <button id="SettingsBtn" class="glow-on-hover" title="Settings" 
+                                        aria-label="Open settings">
+                                        <i class="bi bi-gear"></i>
+                                    </button>                                </div>
+                                <!-- Character counter -->
+                                <div id="charCounter" class="char-counter" style="margin-top: 8px;">
+                                    <span class="char-count">0</span><span class="char-limit">/500</span>
+                                </div>
+                                <!-- Typing indicator -->
+                                <div class="typing-indicator" id="typingIndicator">
+                                    <span>AI is typing</span>
+                                    <div class="dot"></div>
+                                    <div class="dot"></div>
+                                    <div class="dot"></div>
                                 </div>
                             </div>
                         </div>
@@ -63,17 +85,22 @@
                 </div>
             </div>
     </div>
-    </div>
-    </section>
+    </div>    </section>
 
-    <section class="mb-4" id="SiriWave" hidden>
+    <!-- Status indicator for assistant state -->
+    <section class="mb-4" id="AssistantStatus" hidden>
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
                     <div class="d-flex justify-content-center align-items-center" style="height: 100vh;">
-                        <div class="">
-                            <p class="text-start text-light mb-4 siri-message">Hey, This is Zorin!</p>
-                            <div id="siri-container"></div>
+                        <div class="text-center">
+                            <p class="text-light mb-4 assistant-message">Listening...</p>
+                            <!-- Orb will be animated via JavaScript -->
+                            <div id="statusOrb" class="square" style="margin: 0 auto;">
+                                <span class="orb-core"></span>
+                                <span class="orb-glow"></span>
+                                <span class="orb-highlight"></span>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -191,13 +218,8 @@
     <script src="http://jschr.github.io/textillate/jquery.textillate.js"></script>
 
     <!-- Main JS -->
-    <script src="main.js"></script>
-
-    <!-- Eel -->
+    <script src="main.js"></script>    <!-- Eel -->
     <script src="/eel.js"></script>
-
-    <!-- Siri Wave -->
-    <script src="https://unpkg.com/siriwave/dist/siriwave.umd.min.js"></script>
 
     <!-- Controller JS -->
     <script src="controller.js"></script>

@@ -6,6 +6,7 @@ body {
   overflow-x: hidden;
 }
 
+/* Modern AI Assistant Orb Container */
 .square {
   position: relative;
   width: 400px;
@@ -13,8 +14,10 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  transition: transform 0.3s ease;
 }
 
+/* Core orb with smooth idle pulse animation */
 .square span:nth-child(1) {
   position: absolute;
   top: 0;
@@ -22,161 +25,325 @@ body {
   left: 0;
   width: 100%;
   height: 100%;
-  background-image: radial-gradient(#6b72ff00 50%, #05738a 40%, #024b59 95%);
-  box-shadow: 0 0 50px rgba(41, 233, 221, 0.8), inset 0 0 50px rgba(25, 202, 193, 0.8);
-  border-radius: 38% 62% 63% 37% / 41% 44%;
-  transition: 0.5s;
-  animation: animate1 6s linear infinite;
+  background: radial-gradient(
+    circle at 30% 30%, 
+    rgba(10, 176, 209, 0.9) 0%, 
+    rgba(5, 115, 138, 0.8) 30%, 
+    rgba(2, 75, 89, 0.7) 70%, 
+    rgba(1, 40, 50, 0.6) 100%
+  );
+  border-radius: 50%;
+  box-shadow: 
+    0 0 80px rgba(10, 176, 209, 0.6),
+    inset 0 0 40px rgba(10, 176, 209, 0.3),
+    0 0 120px rgba(41, 233, 221, 0.4);
+  transition: all 0.5s ease;
+  animation: orbPulse 3s ease-in-out infinite;
 }
 
+/* Secondary glow layer */
 .square span:nth-child(2) {
   position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-image: radial-gradient(#6b72ff00 50%, #0896b1 40%, #05738a 95%);
-  box-shadow: 0 0 50px rgba(8, 219, 247, 0.7), inset 0 0 50px rgba(8, 219, 247, 0.5);
-  border-radius: 38% 62% 63% 37% / 41% 44%;
-  transition: 0.5s;
-  animation: animate2 4s linear infinite;
+  top: 5%;
+  bottom: 5%;
+  left: 5%;
+  width: 90%;
+  height: 90%;
+  background: radial-gradient(
+    circle at 40% 40%, 
+    rgba(41, 233, 221, 0.4) 0%, 
+    rgba(10, 176, 209, 0.3) 50%, 
+    transparent 100%
+  );
+  border-radius: 50%;
+  box-shadow: 
+    0 0 60px rgba(41, 233, 221, 0.5),
+    inset 0 0 30px rgba(41, 233, 221, 0.2);
+  animation: orbGlow 4s ease-in-out infinite reverse;
 }
 
+/* Inner highlight for depth */
 .square span:nth-child(3) {
   position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-image: radial-gradient(#6b72ff00 50%, #0ab0d1 40%, #0896b1 95%);
-  box-shadow: 0 0 50px rgba(10, 176, 209, 0.8), inset 0 0 50px rgba(10, 176, 209, 0.6);
-  border-radius: 38% 62% 63% 37% / 41% 44%;
-  transition: 0.5s;
-  animation: animate3 8s linear infinite;
+  top: 15%;
+  bottom: 15%;
+  left: 15%;
+  width: 70%;
+  height: 70%;
+  background: radial-gradient(
+    circle at 60% 30%, 
+    rgba(255, 255, 255, 0.3) 0%, 
+    rgba(10, 176, 209, 0.2) 40%, 
+    transparent 70%
+  );
+  border-radius: 50%;
+  animation: orbShimmer 5s ease-in-out infinite;
 }
 
-@keyframes animate1 {
+/* Modern orb animations */
+@keyframes orbPulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.9;
+    box-shadow: 
+      0 0 80px rgba(10, 176, 209, 0.6),
+      inset 0 0 40px rgba(10, 176, 209, 0.3),
+      0 0 120px rgba(41, 233, 221, 0.4);
+  }
+  50% {
+    transform: scale(1.02);
+    opacity: 1;
+    box-shadow: 
+      0 0 100px rgba(10, 176, 209, 0.8),
+      inset 0 0 50px rgba(10, 176, 209, 0.4),
+      0 0 150px rgba(41, 233, 221, 0.6);
+  }
+}
+
+@keyframes orbGlow {
+  0%, 100% {
+    opacity: 0.8;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.05);
+  }
+}
+
+@keyframes orbShimmer {
+  0%, 100% {
+    opacity: 0.6;
+    transform: rotate(0deg) scale(1);
+  }
+  50% {
+    opacity: 0.9;
+    transform: rotate(180deg) scale(1.1);
+  }
+}
+
+/* Speaking animation - scales the entire orb */
+.orb-speaking {
+  animation: orbSpeaking 0.6s ease-in-out infinite alternate !important;
+}
+
+@keyframes orbSpeaking {
   0% {
-    transform: rotate(0deg);
+    transform: scale(1);
   }
-
   100% {
-    transform: rotate(360deg);
+    transform: scale(1.15);
   }
 }
 
-@keyframes animate2 {
+/* Enhanced speaking animation for individual layers */
+.orb-speaking span:nth-child(1) {
+  animation: orbSpeakingCore 0.8s ease-in-out infinite alternate !important;
+}
+
+.orb-speaking span:nth-child(2) {
+  animation: orbSpeakingGlow 0.6s ease-in-out infinite alternate !important;
+}
+
+.orb-speaking span:nth-child(3) {
+  animation: orbSpeakingShimmer 0.4s ease-in-out infinite alternate !important;
+}
+
+@keyframes orbSpeakingCore {
   0% {
-    transform: rotate(0deg);
+    transform: scale(1);
+    box-shadow: 
+      0 0 80px rgba(10, 176, 209, 0.6),
+      inset 0 0 40px rgba(10, 176, 209, 0.3),
+      0 0 120px rgba(41, 233, 221, 0.4);
   }
-
   100% {
-    transform: rotate(360deg);
+    transform: scale(1.1);
+    box-shadow: 
+      0 0 140px rgba(10, 176, 209, 1),
+      inset 0 0 60px rgba(10, 176, 209, 0.5),
+      0 0 200px rgba(41, 233, 221, 0.8);
   }
 }
 
-@keyframes animate3 {
+@keyframes orbSpeakingGlow {
   0% {
-    transform: rotate(0deg);
+    transform: scale(1);
+    opacity: 0.8;
   }
-
   100% {
-    transform: rotate(360deg);
+    transform: scale(1.2);
+    opacity: 1;
   }
 }
 
-/* Code for Input Field and its Buttons */
+@keyframes orbSpeakingShimmer {
+  0% {
+    transform: scale(1) rotate(0deg);
+    opacity: 0.6;
+  }
+  100% {
+    transform: scale(1.3) rotate(45deg);
+    opacity: 1;
+  }
+}
+
+/* Modern AI Chat Input Container */
 #TextInput {
-  background-color: #181818a8;
-  border-color: #024b59;
-  box-shadow: 0 0 20px rgba(41, 233, 221, 0.8),
-    inset 0 0 0px rgba(41, 233, 221, 0.8);
-  border-radius: 8px;
-  color: white;
-  padding: 10px;
-  margin: 0px 20%;
-}
-
-.input-field {
-  background-color: transparent;
-  border: none;
-  width: 95%;
-  outline: none;
-  color: white;
-  font-family: Montserrat;
-}
-
-.glow-on-hover {
-  width: 35px;
-  height: 35px;
-  border: none;
-  outline: none;
-  color: #fff;
-  background: #111;
-  cursor: pointer;
+  background: linear-gradient(145deg, rgba(25, 25, 25, 0.95), rgba(40, 40, 40, 0.9));
+  border: 2px solid transparent;
+  background-clip: padding-box;
+  border-radius: 25px;
+  padding: 8px 12px;
+  margin: 0px 15%;
   position: relative;
-  z-index: 0;
-  border-radius: 10px;
-  padding: 0px;
-  margin-left: 10px;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  box-shadow: 
+    0 8px 32px rgba(10, 176, 209, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1),
+    0 0 0 1px rgba(10, 176, 209, 0.4);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
 }
 
-.glow-on-hover:before {
+/* Animated border gradient */
+#TextInput::before {
   content: '';
-  background: linear-gradient(45deg, #00ffd5);
   position: absolute;
   top: -2px;
   left: -2px;
-  background-size: 400%;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(45deg, 
+    rgba(10, 176, 209, 0.8) 0%, 
+    rgba(41, 233, 221, 0.6) 25%,
+    rgba(10, 176, 209, 0.4) 50%,
+    rgba(5, 115, 138, 0.8) 75%,
+    rgba(10, 176, 209, 0.8) 100%);
+  border-radius: 25px;
   z-index: -1;
-  filter: blur(5px);
-  width: calc(100% + 4px);
-  height: calc(100% + 4px);
-  animation: glowing 20s linear infinite;
+  background-size: 300% 300%;
+  animation: borderGlow 3s ease infinite;
   opacity: 0;
-  transition: opacity .3s ease-in-out;
-  border-radius: 10px;
+  transition: opacity 0.3s ease;
 }
 
-.glow-on-hover:active {
-  color: #181818a8
-}
-
-.glow-on-hover:active:after {
-  background: transparent;
-}
-
-.glow-on-hover:hover:before {
+#TextInput:focus-within::before {
   opacity: 1;
 }
 
-.glow-on-hover:after {
-  z-index: -1;
-  content: '';
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background: #111;
-  left: 0;
-  top: 0;
-  border-radius: 10px;
+#TextInput:hover {
+  transform: translateY(-2px);
+  box-shadow: 
+    0 12px 40px rgba(10, 176, 209, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.15),
+    0 0 0 1px rgba(10, 176, 209, 0.6);
 }
 
-@keyframes glowing {
-  0% {
-    background-position: 0 0;
+/* Keyframe animations for modern textbox */
+@keyframes borderGlow {
+  0%, 100% {
+    background-position: 0% 50%;
   }
-
   50% {
-    background-position: 400% 0;
-  }
-
-  100% {
-    background-position: 0 0;
+    background-position: 100% 50%;
   }
 }
+
+@keyframes inputFocus {
+  0% {
+    box-shadow: 0 8px 32px rgba(10, 176, 209, 0.3);
+  }
+  100% {
+    box-shadow: 0 12px 40px rgba(10, 176, 209, 0.6);
+  }
+}
+
+/* Enhanced input field styling */
+.input-field {
+  background-color: transparent;
+  border: none;
+  width: calc(100% - 160px);
+  outline: none;
+  color: #ffffff;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  padding: 12px 20px;
+  letter-spacing: 0.3px;
+  transition: all 0.3s ease;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.input-field::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+  font-weight: 300;
+  transition: all 0.3s ease;
+}
+
+.input-field:focus::placeholder {
+  color: rgba(10, 176, 209, 0.7);
+  transform: translateX(5px);
+}
+
+/* Modern button styling */
+.glow-on-hover {
+  width: 42px;
+  height: 42px;
+  border: none;
+  outline: none;
+  color: #ffffff;
+  background: linear-gradient(145deg, rgba(10, 176, 209, 0.2), rgba(5, 115, 138, 0.3));
+  cursor: pointer;
+  position: relative;
+  z-index: 1;
+  border-radius: 50%;
+  margin-left: 8px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  box-shadow: 
+    0 4px 15px rgba(10, 176, 209, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.glow-on-hover:hover {
+  transform: translateY(-3px) scale(1.05);
+  background: linear-gradient(145deg, rgba(10, 176, 209, 0.4), rgba(5, 115, 138, 0.5));
+  box-shadow: 
+    0 8px 25px rgba(10, 176, 209, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2),
+    0 0 20px rgba(41, 233, 221, 0.4);
+  color: #ffffff;
+}
+
+.glow-on-hover:active {
+  transform: translateY(-1px) scale(1.02);
+  transition: all 0.1s ease;
+}
+
+/* Special styling for send button when active */
+#SendBtn {
+  background: linear-gradient(145deg, rgba(10, 176, 209, 0.8), rgba(5, 115, 138, 0.9));
+  box-shadow: 
+    0 4px 15px rgba(10, 176, 209, 0.6),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+#SendBtn:hover {
+  background: linear-gradient(145deg, rgba(10, 176, 209, 1), rgba(5, 115, 138, 1));
+  box-shadow: 
+    0 8px 25px rgba(10, 176, 209, 0.8),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3),
+    0 0 25px rgba(41, 233, 221, 0.6);
+}
+
+/* Old button animations removed - using new modern design */
 
 /* Chat Box Start */
 
@@ -588,4 +755,488 @@ select {
 
 .custom-options::-webkit-scrollbar-thumb:hover {
   background: #0ab0d1;
+}
+
+/* AI Orb Container */
+.ai-orb-container {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Assistant message styling */
+.assistant-message {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.2rem;
+  font-weight: 300;
+  color: #0ab0d1;
+  text-shadow: 0 0 10px rgba(10, 176, 209, 0.5);
+  margin-bottom: 30px;
+  opacity: 0.9;
+}
+
+/* Listening state animation */
+.orb-listening {
+  animation: orbListening 2s ease-in-out infinite !important;
+}
+
+@keyframes orbListening {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.8;
+  }
+  50% {
+    transform: scale(1.05);
+    opacity: 1;
+  }
+}
+
+/* Thinking state animation */
+.orb-thinking span:nth-child(1) {
+  animation: orbThinkingCore 1.5s ease-in-out infinite !important;
+}
+
+.orb-thinking span:nth-child(2) {
+  animation: orbThinkingGlow 1.2s ease-in-out infinite reverse !important;
+}
+
+.orb-thinking span:nth-child(3) {
+  animation: orbThinkingShimmer 0.8s ease-in-out infinite !important;
+}
+
+@keyframes orbThinkingCore {
+  0%, 100% {
+    transform: scale(1) rotate(0deg);
+    opacity: 0.9;
+  }
+  50% {
+    transform: scale(1.08) rotate(180deg);
+    opacity: 1;
+  }
+}
+
+@keyframes orbThinkingGlow {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.7;
+  }
+  50% {
+    transform: scale(1.15);
+    opacity: 1;
+  }
+}
+
+@keyframes orbThinkingShimmer {
+  0%, 100% {
+    transform: rotate(0deg) scale(1);
+    opacity: 0.5;
+  }
+  50% {
+    transform: rotate(360deg) scale(1.2);
+    opacity: 0.9;
+  }
+}
+
+/* Performance optimizations for orb animations */
+.square, .square span {
+  will-change: transform, opacity;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  transform-style: preserve-3d;
+  -webkit-transform-style: preserve-3d;
+}
+
+/* Reduce motion for users who prefer it */
+@media (prefers-reduced-motion: reduce) {
+  .square span {
+    animation-duration: 6s !important;
+  }
+  
+  .orb-speaking {
+    animation: orbSpeakingReduced 1.5s ease-in-out infinite alternate !important;
+  }
+  
+  @keyframes orbSpeakingReduced {
+    0% { transform: scale(1); }
+    100% { transform: scale(1.05); }
+  }
+}
+
+/* High contrast mode adjustments */
+@media (prefers-contrast: high) {
+  .square span:nth-child(1) {
+    box-shadow: 
+      0 0 120px rgba(10, 176, 209, 1),
+      inset 0 0 60px rgba(10, 176, 209, 0.8);
+  }
+}
+
+/* Enhanced focus states for accessibility */
+.square:focus-visible {
+  outline: 2px solid #0ab0d1;
+  outline-offset: 10px;
+  border-radius: 50%;
+}
+
+/* Responsive orb sizing */
+@media (max-width: 768px) {
+  .square {
+    width: 300px;
+    height: 300px;
+  }
+  
+  .ai-orb-container {
+    margin: 0 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .square {
+    width: 250px;
+    height: 250px;
+  }
+}
+
+/* Dark mode enhancements */
+@media (prefers-color-scheme: dark) {
+  .square span:nth-child(1) {
+    background: radial-gradient(
+      circle at 30% 30%, 
+      rgba(10, 176, 209, 1) 0%, 
+      rgba(5, 115, 138, 0.9) 30%, 
+      rgba(2, 75, 89, 0.8) 70%, 
+      rgba(1, 40, 50, 0.7) 100%
+    );
+  }
+}
+
+/* GPU acceleration hints */
+.square span {
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+}
+
+/* Microphone button pulse when recording */
+#MicBtn.recording {
+  animation: micPulse 1.5s ease-in-out infinite;
+  background: linear-gradient(145deg, rgba(220, 53, 69, 0.8), rgba(180, 45, 55, 0.9));
+}
+
+@keyframes micPulse {
+  0%, 100% {
+    box-shadow: 
+      0 4px 15px rgba(220, 53, 69, 0.6),
+      inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  }
+  50% {
+    box-shadow: 
+      0 8px 25px rgba(220, 53, 69, 0.8),
+      inset 0 1px 0 rgba(255, 255, 255, 0.3),
+      0 0 25px rgba(220, 53, 69, 0.6);
+  }
+}
+
+/* Chat button notification indicator */
+#ChatBtn.has-new-messages::after {
+  content: '';
+  position: absolute;
+  top: -2px;
+  right: -2px;
+  width: 12px;
+  height: 12px;
+  background: linear-gradient(145deg, #ff4757, #ff3742);
+  border-radius: 50%;
+  box-shadow: 0 2px 8px rgba(255, 71, 87, 0.6);
+  animation: notificationPulse 2s ease-in-out infinite;
+}
+
+@keyframes notificationPulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.2);
+    opacity: 0.8;
+  }
+}
+
+/* Settings button special effects */
+#SettingsBtn:hover i {
+  animation: settingsRotate 0.8s ease-in-out;
+}
+
+@keyframes settingsRotate {
+  0% { transform: rotate(0deg) scale(1.1); }
+  50% { transform: rotate(180deg) scale(1.1); }
+  100% { transform: rotate(360deg) scale(1.1); }
+}
+
+/* Input container responsive design */
+@media (max-width: 768px) {
+  #TextInput {
+    margin: 0px 10%;
+    padding: 6px 10px;
+  }
+  
+  .input-field {
+    width: calc(100% - 140px);
+    font-size: 14px;
+    padding: 10px 15px;
+  }
+  
+  .glow-on-hover {
+    width: 38px;
+    height: 38px;
+    font-size: 14px;
+    margin-left: 6px;
+  }
+}
+
+@media (max-width: 480px) {
+  #TextInput {
+    margin: 0px 5%;
+    padding: 5px 8px;
+  }
+  
+  .input-field {
+    width: calc(100% - 120px);
+    font-size: 13px;
+    padding: 8px 12px;
+  }
+  
+  .glow-on-hover {
+    width: 35px;
+    height: 35px;
+    font-size: 13px;
+    margin-left: 5px;
+  }
+}
+
+/* Enhanced focus states for accessibility */
+.glow-on-hover:focus-visible {
+  outline: 2px solid rgba(10, 176, 209, 0.8);
+  outline-offset: 2px;
+}
+
+.input-field:focus {
+  color: #ffffff;
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  #TextInput {
+    border: 2px solid #0ab0d1;
+    background: rgba(0, 0, 0, 0.9);
+  }
+  
+  .input-field {
+    color: #ffffff;
+  }
+  
+  .glow-on-hover {
+    border: 1px solid #0ab0d1;
+  }
+}
+
+/* Reduce motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+  #TextInput::before {
+    animation: none;
+  }
+  
+  .glow-on-hover {
+    transition: none;
+  }
+  
+  #MicBtn.recording {
+    animation: none;
+    background: linear-gradient(145deg, rgba(220, 53, 69, 0.8), rgba(180, 45, 55, 0.9));
+  }
+}
+
+/* Character counter styling */
+.char-counter {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.6);
+  opacity: 0;
+  transition: all 0.3s ease;
+  text-align: right;
+  margin-right: 15%;
+}
+
+.char-counter.visible {
+  opacity: 1;
+}
+
+.char-count {
+  color: rgba(10, 176, 209, 0.8);
+  font-weight: 500;
+}
+
+.char-limit {
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.char-counter.warning .char-count {
+  color: rgba(255, 193, 7, 0.9);
+}
+
+.char-counter.error .char-count {
+  color: rgba(220, 53, 69, 0.9);
+}
+
+/* Loading state for input */
+#TextInput.loading {
+  opacity: 0.7;
+  pointer-events: none;
+}
+
+#TextInput.loading::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  right: 15px;
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgba(10, 176, 209, 0.3);
+  border-top: 2px solid rgba(10, 176, 209, 0.8);
+  border-radius: 50%;
+  animation: inputLoading 1s linear infinite;
+}
+
+@keyframes inputLoading {
+  0% { transform: translateY(-50%) rotate(0deg); }
+  100% { transform: translateY(-50%) rotate(360deg); }
+}
+
+/* Success feedback animation */
+#TextInput.success {
+  animation: successPulse 0.6s ease-out;
+}
+
+@keyframes successPulse {
+  0% {
+    box-shadow: 0 8px 32px rgba(10, 176, 209, 0.3);
+  }
+  50% {
+    box-shadow: 0 12px 40px rgba(46, 204, 113, 0.6);
+    border-color: rgba(46, 204, 113, 0.8);
+  }
+  100% {
+    box-shadow: 0 8px 32px rgba(10, 176, 209, 0.3);
+  }
+}
+
+/* Enhanced button tooltips positioning */
+.glow-on-hover {
+  position: relative;
+}
+
+.glow-on-hover:hover::after {
+  content: attr(title);
+  position: absolute;
+  bottom: 120%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(25, 25, 25, 0.95);
+  color: #ffffff;
+  padding: 6px 10px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 400;
+  white-space: nowrap;
+  z-index: 1000;
+  border: 1px solid rgba(10, 176, 209, 0.3);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  opacity: 0;
+  animation: tooltipFadeIn 0.3s ease-out 0.5s forwards;
+}
+
+.glow-on-hover:hover::before {
+  content: '';
+  position: absolute;
+  bottom: 110%;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 5px solid transparent;
+  border-top-color: rgba(25, 25, 25, 0.95);
+  z-index: 1000;
+  opacity: 0;
+  animation: tooltipFadeIn 0.3s ease-out 0.5s forwards;
+}
+
+@keyframes tooltipFadeIn {
+  0% {
+    opacity: 0;
+    transform: translateX(-50%) translateY(5px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+/* Voice input visual feedback */
+#MicBtn.listening {
+  background: linear-gradient(145deg, rgba(46, 204, 113, 0.8), rgba(39, 174, 96, 0.9));
+  animation: listeningPulse 1.5s ease-in-out infinite;
+}
+
+@keyframes listeningPulse {
+  0%, 100% {
+    box-shadow: 
+      0 4px 15px rgba(46, 204, 113, 0.6),
+      inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  }
+  50% {
+    box-shadow: 
+      0 8px 25px rgba(46, 204, 113, 0.8),
+      inset 0 1px 0 rgba(255, 255, 255, 0.3),
+      0 0 25px rgba(46, 204, 113, 0.6);
+  }
+}
+
+/* Typing indicator */
+.typing-indicator {
+  display: none;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.6);
+  margin-top: 8px;
+}
+
+.typing-indicator.active {
+  display: flex;
+  justify-content: center;
+}
+
+.typing-indicator .dot {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: rgba(10, 176, 209, 0.8);
+  animation: typingBounce 1.4s ease-in-out infinite both;
+}
+
+.typing-indicator .dot:nth-child(2) {
+  animation-delay: -0.32s;
+}
+
+.typing-indicator .dot:nth-child(3) {
+  animation-delay: -0.16s;
+}
+
+@keyframes typingBounce {
+  0%, 80%, 100% {
+    transform: scale(0);
+    opacity: 0.5;
+  }
+  40% {
+    transform: scale(1);
+    opacity: 1;
+  }
 }

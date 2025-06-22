@@ -1,26 +1,42 @@
 [
     {
         "role": "user",
-        "content": "What's up bro? what's up?"
+        "content": "How are you?"
     },
     {
         "role": "assistant",
-        "content": "Not much, just here and ready to help, Jashan. What do you need?"
+        "content": "I'm doing well, thanks for asking."
     },
     {
         "role": "user",
-        "content": "What's up?"
+        "content": "How are you?"
     },
     {
         "role": "assistant",
-        "content": "Everything's good, just waiting for your question."
+        "content": "I'm functioning properly."
     },
     {
         "role": "user",
-        "content": "What do you think about the weather outside?"
+        "content": "Tell me some latest tech news."
     },
     {
         "role": "assistant",
-        "content": "I don't have real-time access to your location, but I can suggest checking a weather app or website for the current weather outside."
+        "content": "As of my latest update, here are some recent tech news headlines:\n\nElon Musk's Starship rocket has experienced another anomaly, resulting in an explosion. Meanwhile, Google has suffered a setback at the EU court over a record $4.9 billion fine. In other news, Microsoft is prepared to abandon its high-stakes battle with the European Union over a billion-dollar fine.\n\nAdditionally, Tesla has begun a limited robotaxi service in Austin, and astronomers are preparing to deal with an enormous amount of imagery data. \n\nThese are just a few of the latest tech news updates. If you'd like more information or specific details on any of these stories, feel free to ask!"
+    },
+    {
+        "role": "user",
+        "content": "How are you?"
+    },
+    {
+        "role": "assistant",
+        "content": "I'm working correctly."
+    },
+    {
+        "role": "user",
+        "content": "What are you doing?"
+    },
+    {
+        "role": "assistant",
+        "content": "I'm assisting you with information and tasks."
     }
 ]
