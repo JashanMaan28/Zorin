@@ -53,14 +53,9 @@ A smart and modern desktop assistant powered by AI. Built using **Python** and *
    pip install -r requirements.txt
    ```
 
-3. **Start the frontend**
+3. **Start the Application**
    ```bash
-   ...
-   ```
-
-4. **Run the backend**
-   ```bash
-   ...
+   python run.py
    ```
 
 ---
